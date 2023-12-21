@@ -20,27 +20,21 @@ const Group = ({ groupInfo }) => {
       (el) => el[display.grouping] === group.value
     );
   }
-  let finalList = [];
+
   if (display.ordering === "title") {
     filteredTickets?.sort((a, b) => a.title.localeCompare(b.title));
   } else {
-    finalList = filteredTickets?.sort((a, b) => b.priority - a.priority);
+    filteredTickets?.sort((a, b) => b.priority - a.priority);
   }
   return (
-    <>
-      {tickets ? (
-        <div className="">
-          <h1>{group.name}</h1>
-          <div className="mt-4 space-y-3">
-            {filteredTickets?.map((ticket) => (
-              <GroupCard key={ticket.id} ticket={ticket} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className=""></div>
-      )}
-    </>
+    <div className="">
+      <h1>{group.name}</h1>
+      <div className="mt-4 space-y-3">
+        {filteredTickets?.map((ticket) => (
+          <GroupCard key={ticket.id} ticket={ticket} />
+        ))}
+      </div>
+    </div>
   );
 };
 
