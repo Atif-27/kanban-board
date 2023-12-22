@@ -23,7 +23,7 @@ const GroupCard = ({ ticket }) => {
             <UserIcon user={user} />
           </>
         </CardDescription>
-        <CardTitle className=" font-normal text-md flex justify-start ">
+        <CardTitle className=" font-thin md:text-md text-sm flex justify-start ">
           {display.grouping !== "status" && (
             <div className=" pr-2">{getStatusIcon(ticket.status)}</div>
           )}

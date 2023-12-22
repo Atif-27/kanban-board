@@ -8,7 +8,7 @@ import { getPriorityIcon, getStatusIcon } from "@/lib/utils/contants";
 import { FaPlus } from "react-icons/fa6";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 const Group = ({ groupInfo }) => {
-  const { display, data } = useDisplay();
+  const { display, data } = useDisplay(); // ! Consuming context
   const isUser = display.grouping === "user";
   const isStatus = display.grouping === "status";
   const isPriority = display.grouping === "priority";
@@ -19,6 +19,7 @@ const Group = ({ groupInfo }) => {
   //! FILTERED TICKETS
   let filteredTickets = [];
 
+  // ! Filtering tickets based on grouping
   if (isUser) {
     filteredTickets = tickets?.filter((el) => el.userId === group.id);
   } else {
@@ -27,6 +28,7 @@ const Group = ({ groupInfo }) => {
     );
   }
 
+  // ! Sorting tickets based on ordering
   if (display.ordering === "title") {
     filteredTickets?.sort((a, b) => a.title.localeCompare(b.title));
   } else {

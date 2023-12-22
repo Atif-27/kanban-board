@@ -4,33 +4,36 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 const DisplayContext = createContext();
 
-const initialState =
-  typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("display")) || {
+// ! Fetched data is passed from server comp to client component
+function DisplayProvider({ children, fetchedData }) {
+  const [display, setDisplay] = useState({});
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    // ! Taking data from local storage if its available otherwise setting initial state
+
+    setDisplay(
+      JSON.parse(localStorage.getItem("display")) || {
         grouping: "status",
         ordering: "priority",
       }
-    : {
-        grouping: "status",
-        ordering: "priority",
-      };
-function DisplayProvider({ children, fetchedData }) {
-  const [display, setDisplay] = useState(initialState);
-  const [data, setData] = useState(null);
+    );
+  }, []);
   useEffect(() => {
     setData(fetchedData);
   }, [fetchedData]);
 
+  // ! Setting the grouping
   function handleGrouping(value) {
     const newDisplay = { ...display, grouping: value };
     setDisplay(newDisplay);
-    localStorage.setItem("display", JSON.stringify(newDisplay));
+    localStorage.setItem("display", JSON.stringify(newDisplay)); //Stroing in localStorage
   }
+  // ! Setting the ordering
   function handleOrdering(value) {
     const newDisplay = { ...display, ordering: value };
 
     setDisplay(newDisplay);
-    localStorage.setItem("display", JSON.stringify(newDisplay));
+    localStorage.setItem("display", JSON.stringify(newDisplay)); //Storing in localStorage
   }
 
   return (
@@ -44,6 +47,7 @@ function DisplayProvider({ children, fetchedData }) {
 
 export default DisplayProvider;
 
+// ! Custom hook to consume context
 export function useDisplay() {
   const context = useContext(DisplayContext);
   if (context === undefined) {
