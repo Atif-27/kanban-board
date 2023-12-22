@@ -3,10 +3,15 @@
 import { useDisplay } from "@/app/context/DisplayContext";
 import GroupCard from "./GroupCard";
 import UserIcon from "./UserIcon";
+import { getPriorityIcon, getStatusIcon } from "@/lib/utils/contants";
 
+import { FaPlus } from "react-icons/fa6";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 const Group = ({ groupInfo }) => {
   const { display, data } = useDisplay();
   const isUser = display.grouping === "user";
+  const isStatus = display.grouping === "status";
+  const isPriority = display.grouping === "priority";
   //! GROUP NAME AND VALUE
   const group = isUser ? groupInfo : groupInfo[display.grouping];
   //! FETCHED TICKETS
@@ -31,9 +36,16 @@ const Group = ({ groupInfo }) => {
     <div className="mb-10">
       <h1 className="flex justify-between items-center ">
         <div className="flex items-center space-x-2">
-          <p>{isUser && <UserIcon user={groupInfo} />}</p> <p>{group.name}</p>
+          <p>{isUser && <UserIcon user={groupInfo} />}</p>
+          <p>{isStatus && getStatusIcon(groupInfo.status.name)}</p>
+          <p>{isPriority && getPriorityIcon(groupInfo.priority.value)}</p>
+          <p className=" font-semibold">{group.name}</p>
+          <p>{filteredTickets.length}</p>
         </div>
-        <div className="mr-4">➕ ...</div>
+        <div className="mr-4 flex space-x-4">
+          <FaPlus />
+          <HiOutlineDotsHorizontal />
+        </div>
       </h1>
       <div className="mt-4 space-y-3">
         {filteredTickets?.map((ticket) => (

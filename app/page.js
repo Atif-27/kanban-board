@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className=" bg-stone-100 max-h-screen">
+    <div className="">
       <Dashboard />
     </div>
   );

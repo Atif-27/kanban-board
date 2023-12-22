@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.darkFontLight {
+  @apply bg-white text-slate-700 dark:bg-slate-700 dark:text-white;
+}
+.bgDarkFontLight {
+  @apply bg-stone-100 text-black dark:bg-black dark:text-stone-100;
+}

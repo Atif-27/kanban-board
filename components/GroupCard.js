@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/card";
 import Tag from "./Tag";
 import UserIcon from "./UserIcon";
+import { getPriorityIcon, getStatusIcon } from "@/lib/utils/contants";
+import { Badge } from "./ui/badge";
 
 const GroupCard = ({ ticket }) => {
   const { display, data } = useDisplay();
@@ -16,14 +18,23 @@ const GroupCard = ({ ticket }) => {
     <Card>
       <CardHeader className="p-4">
         <CardDescription className="flex justify-between items-center">
-          <div> {ticket.id}</div>
-          <div className=" scale-75">
+          <span> {ticket.id}</span>
+          <span className=" scale-75">
             <UserIcon user={user} />
-          </div>
+          </span>
         </CardDescription>
-        <CardTitle className=" font-normal text-md">{ticket.title}</CardTitle>
-        <CardTitle className=" font-normal text-md flex gap-2 flex-wrap">
-          {display.grouping !== "priority" ? <div>📶</div> : ""}
+        <CardTitle className=" font-normal text-md flex ">
+          {display.grouping !== "status" && (
+            <span className="pt-1 pr-2">{getStatusIcon(ticket.status)}</span>
+          )}
+          <span className=" font-semibold">{ticket.title}</span>
+        </CardTitle>
+        <CardTitle className=" font-normal text-md flex gap-2 flex-wrap items-center pt-2">
+          <Badge variant="outline" className="text-lg rounded-md">
+            {display.grouping !== "priority"
+              ? getPriorityIcon(ticket.priority)
+              : ""}
+          </Badge>
           <Tag tags={ticket.tag} />
         </CardTitle>
       </CardHeader>
