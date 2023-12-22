@@ -15,7 +15,7 @@ const GroupCard = ({ ticket }) => {
   const user = data.users.find((el) => el.id === ticket.userId);
 
   return (
-    <Card className="dark:bg-gray-900">
+    <Card className="dark:bg-gray-900  border-2 border-gray-400">
       <CardHeader className="p-4">
         <CardDescription className="flex justify-between items-center">
           <span> {ticket.id}</span>
@@ -30,7 +30,10 @@ const GroupCard = ({ ticket }) => {
           <span className=" font-semibold">{ticket.title}</span>
         </CardTitle>
         <CardTitle className=" font-normal text-md flex gap-2 flex-wrap items-center pt-2">
-          <Badge variant="outline" className="text-lg rounded-md">
+          <Badge
+            variant="outline"
+            className="text-lg rounded-md dark:border-gray-500"
+          >
             {display.grouping !== "priority"
               ? getPriorityIcon(ticket.priority)
               : ""}

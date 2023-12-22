@@ -33,7 +33,7 @@ const Group = ({ groupInfo }) => {
     filteredTickets?.sort((a, b) => b.priority - a.priority);
   }
   return (
-    <div className="mb-10">
+    <div className="mb-10 ">
       <h1 className="flex justify-between items-center ">
         <div className="flex items-center space-x-2">
           <p>{isUser && <UserIcon user={groupInfo} />}</p>

@@ -5,7 +5,11 @@ const Tag = ({ tags }) => {
   return (
     <div>
       {tags.map((tag) => (
-        <Badge key={tag} variant="outline" className="rounded-md">
+        <Badge
+          key={tag}
+          variant="outline"
+          className="rounded-md dark:border-gray-500"
+        >
           <FaCircle className="mr-1.5" />
           {tag}
         </Badge>
