@@ -15,7 +15,7 @@ const GroupCard = ({ ticket }) => {
   const user = data.users.find((el) => el.id === ticket.userId);
 
   return (
-    <Card>
+    <Card className="dark:bg-gray-900">
       <CardHeader className="p-4">
         <CardDescription className="flex justify-between items-center">
           <span> {ticket.id}</span>
