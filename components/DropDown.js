@@ -1,4 +1,6 @@
 "use client";
+import { AiOutlineControl } from "react-icons/ai";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 import { useDisplay } from "@/app/context/DisplayContext";
 import {
@@ -14,14 +16,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { grouping, ordering } from "@/lib/utils/contants";
 const DropDown = () => {
   const { display, handleGrouping, handleOrdering } = useDisplay();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Display</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem className="flex">
+    <DropdownMenu className="drop-shadow-md ">
+      <DropdownMenuTrigger className="border border-stone-200/35 rounded-lg px-4 py-1 drop-shadow-md flex  items-center justify-center space-x-2">
+        <AiOutlineControl />
+        <span>Display</span>
+        <MdOutlineKeyboardArrowDown />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="ml-10 ">
+        <DropdownMenuItem className="flex dark:bg-[#161B22] ">
           Grouping
           <Select
             name="grouping"
@@ -32,13 +39,15 @@ const DropDown = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="status">Status</SelectItem>
-              <SelectItem value="user">User</SelectItem>
-              <SelectItem value="priority">Priority</SelectItem>
+              {grouping.map((el, index) => (
+                <SelectItem key={index} value={el.value}>
+                  {el.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem className="dark:bg-[#161B22]">
           Ordering
           <Select
             name="ordering"
@@ -49,8 +58,11 @@ const DropDown = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="priority">Priority</SelectItem>
-              <SelectItem value="title">Title</SelectItem>
+              {ordering.map((el, index) => (
+                <SelectItem key={index} value={el.value}>
+                  {el.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </DropdownMenuItem>

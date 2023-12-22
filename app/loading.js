@@ -9,10 +9,8 @@ import { Tag, UserIcon } from "lucide-react";
 const Loading = () => {
   const group = Array(5);
   return (
-    <section className="px-10 py-8 bg-red-100 w-full h-screen">
-      {group.map((el, index) => (
-        <Skeleton key={index} className="w-[100px] h-[20px] rounded-full" />
-      ))}
+    <section className="px-10 py-8 w-full h-screen">
+      <Skeleton className="w-[100px] h-[20px] rounded-full" />
     </section>
   );
 };

@@ -14,17 +14,12 @@ const initialState =
         grouping: "status",
         ordering: "priority",
       };
-function DisplayProvider({ children }) {
+function DisplayProvider({ children, fetchedData }) {
   const [display, setDisplay] = useState(initialState);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(process.env.BOARD_API);
-      const fetchedData = await res.json();
-      setData(fetchedData);
-    }
-    fetchData();
-  }, []);
+    setData(fetchedData);
+  }, [fetchedData]);
 
   function handleGrouping(value) {
     const newDisplay = { ...display, grouping: value };

@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 
 import { useDisplay } from "@/app/context/DisplayContext";
 import GroupCard from "./GroupCard";
@@ -33,14 +33,14 @@ const Group = ({ groupInfo }) => {
     filteredTickets?.sort((a, b) => b.priority - a.priority);
   }
   return (
-    <div className="mb-10 ">
+    <div className="mb-10">
       <h1 className="flex justify-between items-center ">
-        <div className="flex items-center space-x-2">
-          <p>{isUser && <UserIcon user={groupInfo} />}</p>
-          <p>{isStatus && getStatusIcon(groupInfo.status.name)}</p>
-          <p>{isPriority && getPriorityIcon(groupInfo.priority.value)}</p>
-          <p className=" font-semibold">{group.name}</p>
-          <p>{filteredTickets.length}</p>
+        <div className="flex justify-start items-center  space-x-1.5">
+          <div>{isUser && <UserIcon user={groupInfo} />}</div>
+          <div>{isPriority && getPriorityIcon(groupInfo.priority.value)}</div>
+          <div>{isStatus && getStatusIcon(groupInfo.status.name)}</div>
+          <div className="font-semibold">{group.name}</div>
+          <div>{filteredTickets.length}</div>
         </div>
         <div className="mr-4 flex space-x-4">
           <FaPlus />

@@ -15,29 +15,29 @@ const GroupCard = ({ ticket }) => {
   const user = data.users.find((el) => el.id === ticket.userId);
 
   return (
-    <Card className="dark:bg-gray-900  border-2 border-gray-400">
+    <Card className="dark:bg-gray-900  border-2 dark:border-gray-600 max-sm:text-sm max-md:text-md">
       <CardHeader className="p-4">
-        <CardDescription className="flex justify-between items-center">
-          <span> {ticket.id}</span>
-          <span className=" scale-75">
+        <CardDescription className="text-sm flex justify-between items-start ">
+          {ticket.id}
+          <>
             <UserIcon user={user} />
-          </span>
+          </>
         </CardDescription>
-        <CardTitle className=" font-normal text-md flex ">
+        <CardTitle className=" font-normal text-md flex justify-start ">
           {display.grouping !== "status" && (
-            <span className="pt-1 pr-2">{getStatusIcon(ticket.status)}</span>
+            <div className=" pr-2">{getStatusIcon(ticket.status)}</div>
           )}
-          <span className=" font-semibold">{ticket.title}</span>
+          <div className=" font-semibold leading-none">{ticket.title}</div>
         </CardTitle>
         <CardTitle className=" font-normal text-md flex gap-2 flex-wrap items-center pt-2">
-          <Badge
-            variant="outline"
-            className="text-lg rounded-md dark:border-gray-500"
-          >
-            {display.grouping !== "priority"
-              ? getPriorityIcon(ticket.priority)
-              : ""}
-          </Badge>
+          {display.grouping !== "priority" && (
+            <Badge
+              variant="outline"
+              className="text-lg rounded-md dark:border-gray-500"
+            >
+              {getPriorityIcon(ticket.priority)}
+            </Badge>
+          )}
           <Tag tags={ticket.tag} />
         </CardTitle>
       </CardHeader>
