@@ -9,7 +9,7 @@ This React application implements an interactive Kanban board that fetches data 
 
 ## Live Demo
 
-[https://kanban-board-git-main-atif-27s-projects.vercel.app/](#)
+[live](#https://kanban-board-git-main-atif-27s-projects.vercel.app/)
 
 ## Features
 
